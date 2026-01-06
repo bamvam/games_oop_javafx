@@ -21,6 +21,13 @@ public final class Logic {
     }
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
+        for (Cell step : steps) {
+            for (Figure figure : figures) {
+                if (figure != null && figure.position().equals(step)) {
+                    throw new OccupiedCellException("Cell " + step + " is occupied");
+                }
+            }
+        }
         return true;
     }
 
@@ -37,5 +44,24 @@ public final class Logic {
             }
         }
         throw new FigureNotFoundException("Figure not found on the board.");
+    }
+
+    public int getFiguresCount() {
+        int count = 0;
+        for (Figure figure : figures) {
+            if (figure != null) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public Figure findByFigure(Figure target) {
+        for (Figure figure : figures) {
+            if (figure != null && figure.equals(target)) {
+                return figure;
+            }
+        }
+        return null;
     }
 }
