@@ -64,4 +64,11 @@ public final class Logic {
         }
         return null;
     }
+
+    public Figure getFigure(int index) {
+        if (index >= 0 && index < figures.length) {
+            return figures[index];
+        }
+        return null;
+    }
 }
